@@ -30,6 +30,11 @@ class ListArray : public List<T> {
 
     public:
 
+		void prepend(const T& element) override {
+			insert(0, element);
+		}
+
+
         ListArray() : max(MINSIZE), n(0) {
         
 			arr = new T[max];
@@ -54,29 +59,33 @@ class ListArray : public List<T> {
 
 
 		friend std::ostream& operator<<( std::ostream &out, ListArray<T> &list) {
-			out << "[";
+			out << "List => []";
 			for (int i = 0; i < list.n; ++i) {
-				out << list.arr[i];
-				if (i < list.n - 1) {
-					out << ", ";
-				}
+				out << "  " << list.arr[i];
 			}
 			out << "]";
 			return out;
 		}
 
+
+
+
+
+
+
+
 		void insert(std::size_t index, const T& element) override {
-        if (index > static_cast<std::size_t>(n)) {
-            throw std::out_of_range("Fuera de rango");
-        }
-        if (n == max) {
-            resize(max * 2);
-        }
-        for (int i = n; i > static_cast<int>(index); --i) {
-            arr[i] = arr[i - 1];
-        }
-        arr[index] = element;
-        n++;
+			if (index > static_cast<std::size_t>(n)) {
+				throw std::out_of_range("Fuera de rango");
+			}
+			if (n == max) {
+				resize(max * 2);
+			}
+			for (int i = n; i > static_cast<int>(index); --i) {
+				arr[i] = arr[i - 1];
+			}
+			arr[index] = element;
+			n++;
 		
 		}
 
@@ -123,6 +132,10 @@ class ListArray : public List<T> {
 
 		void clear() override {
 			n = 0;
+		}
+
+		void append(const T& element) override {
+			insert(n, element);
 		}
 };
 #endif
