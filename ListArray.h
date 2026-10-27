@@ -15,18 +15,15 @@ class ListArray : public List<T> {
 		int n;
 		static const int MINSIZE = 2;
 
-
-		void resize(int new_size){
-			T* new_arr = new T[new_size];
-			for (int i = 0; i < n; ++i) {
-				new_arr[i] = arr[i];
-			}
-        delete[] arr;
-        arr = new_arr;
-        max = new_size;
+		void resize(int new_size) {
+            T* new_arr = new T[new_size];
+            for (int i = 0; i < n; ++i) {
+                new_arr[i] = arr[i];
+            }
+            delete[] arr;
+            arr = new_arr;
+            max = new_size;
 		}
-
-
 
     public:
 
@@ -58,18 +55,17 @@ class ListArray : public List<T> {
 		}
 
 
-		friend std::ostream& operator<<( std::ostream &out, ListArray<T> &list) {
-			out << "List => []";
+		friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list) {
+		    out << "[";
 			for (int i = 0; i < list.n; ++i) {
-				out << "  " << list.arr[i];
+				out << list.arr[i];
+				if (i < list.n - 1) {
+					out << ", ";
+				}
 			}
 			out << "]";
 			return out;
 		}
-
-
-
-
 
 
 
@@ -136,6 +132,21 @@ class ListArray : public List<T> {
 
 		void append(const T& element) override {
 			insert(n, element);
+
 		}
+
+		
+		void duplicate_list() override {
+            int tam = n;
+            for (int i = 0; i < tam; ++i) {
+                T val = arr[i];
+                append(val);
+            }
+        }
+
+
+
+
+
 };
 #endif

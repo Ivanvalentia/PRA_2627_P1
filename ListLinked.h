@@ -135,6 +135,14 @@ class ListLinked : public List<T> {
             out << "]";
             return out;
         }
+
+		void duplicate_list() override {
+			int tam = n;
+            for (int i = 0; i < tam; ++i) {
+                append(get(i));
+            }
+        }
+
 };
 
 #endif

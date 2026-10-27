@@ -21,6 +21,7 @@ class List {
 	virtual void clear() = 0;
 	virtual void append(const T& element) = 0;
     virtual void prepend(const T& element) = 0;
+	virtual void duplicate_list() = 0;
 };
 
 #endif
