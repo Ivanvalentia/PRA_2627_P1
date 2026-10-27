@@ -18,7 +18,9 @@ class List {
     virtual int search(const T& element) const = 0;
     virtual bool empty() const = 0;
     virtual std::size_t size() const = 0;
-    virtual void clear() = 0;
+	virtual void clear() = 0;
+	virtual void append(const T& element) = 0;
+    virtual void prepend(const T& element) = 0;
 };
 
 #endif
